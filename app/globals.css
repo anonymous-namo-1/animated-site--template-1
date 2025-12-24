@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color variables - true black dark theme */
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
+  --color-accent: #ec4899;
+
+  /* Gradient variables */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --gradient-accent: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+
+  /* Easing function variables */
+  --easing-custom: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+  --easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@layer base {
+  /* Global reset and defaults */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Focus-visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Premium button base styles */
+  button,
+  a[role="button"] {
+    @apply transition-all duration-200 ease-out;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+    transform-origin: center;
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes can be added here */
+  .interactive-element {
+    @apply cursor-pointer select-none;
+    will-change: transform, box-shadow, opacity;
+  }
+}
