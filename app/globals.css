@@ -23,10 +23,6 @@
 
 @layer base {
   /* Global reset and defaults */
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground antialiased;
   }
