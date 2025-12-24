@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollIndicator } from "./ScrollIndicator";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 interface FloatingMetricProps {
   label: string;
@@ -318,7 +318,7 @@ export function Hero() {
       />
 
       {/* FLOATING METRICS */}
-      {siteConfig.floatingMetrics.map((metric, index) => (
+      {content.metrics.floating.map((metric, index) => (
         <FloatingMetric key={index} {...metric} />
       ))}
 
@@ -335,14 +335,14 @@ export function Hero() {
             border: "1px solid rgba(255, 255, 255, 0.08)",
           }}
         >
-          <span className="text-sm text-foreground/80">{siteConfig.hero.badge}</span>
+          <span className="text-sm text-foreground/80">{content.hero.badge.icon} {content.hero.badge.text}</span>
         </div>
 
         {/* Main heading */}
         <h1 ref={headlineRef} className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
-          <span className="inline-block">{siteConfig.hero.heading}</span>{" "}
+          <span className="inline-block">{content.hero.heading}</span>{" "}
           <span className="inline-block bg-gradient-to-r from-white via-white/90 to-white/60 bg-clip-text text-transparent">
-            {siteConfig.hero.headingAccent}
+            {content.hero.headingAccent}
           </span>
         </h1>
 
@@ -351,22 +351,22 @@ export function Hero() {
           ref={subheadingRef}
           className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto mb-10"
         >
-          {siteConfig.hero.subheading}
+          {content.hero.subheading}
         </p>
 
         {/* CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <button
-            onClick={() => handleCTAClick(siteConfig.hero.primaryCTA.href)}
+            onClick={() => handleCTAClick(content.hero.cta.primary.href)}
             className="group px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-all hover:scale-105 flex items-center gap-2"
           >
-            <span>{siteConfig.hero.primaryCTA.text}</span>
+            <span>{content.hero.cta.primary.text}</span>
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
           <button
-            onClick={() => handleCTAClick(siteConfig.hero.secondaryCTA.href)}
+            onClick={() => handleCTAClick(content.hero.cta.secondary.href)}
             className="px-8 py-4 rounded-full font-medium transition-all hover:scale-105"
             style={{
               background: "rgba(255, 255, 255, 0.05)",
@@ -375,7 +375,7 @@ export function Hero() {
               color: "white",
             }}
           >
-            {siteConfig.hero.secondaryCTA.text}
+            {content.hero.cta.secondary.text}
           </button>
         </div>
 

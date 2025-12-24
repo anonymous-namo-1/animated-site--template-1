@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: siteConfig.seo.title,
-  description: siteConfig.seo.description,
+  title: content.seo.home.title,
+  description: content.seo.home.description,
 };
 
 export default function RootLayout({

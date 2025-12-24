@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -19,7 +19,7 @@ export function FAQ() {
         </div>
 
         <div className="space-y-4">
-          {siteConfig.faqs.map((faq, index) => (
+          {content.faq.items.map((faq, index) => (
             <div
               key={index}
               className="rounded-2xl overflow-hidden transition-all duration-300"
@@ -33,7 +33,7 @@ export function FAQ() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors"
               >
-                <span className="font-semibold text-lg">{faq.question}</span>
+                <span className="font-semibold text-lg">{faq.q}</span>
                 <svg
                   className={`w-5 h-5 flex-shrink-0 transition-transform ${
                     openIndex === index ? "rotate-180" : ""
@@ -47,7 +47,7 @@ export function FAQ() {
               </button>
               {openIndex === index && (
                 <div className="px-6 pb-5 text-foreground/70">
-                  {faq.answer}
+                  {faq.a}
                 </div>
               )}
             </div>

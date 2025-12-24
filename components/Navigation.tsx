@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 import Link from "next/link";
 
 export function Navigation() {
@@ -82,17 +82,17 @@ export function Navigation() {
             >
               <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                 <span className="text-lg font-bold">
-                  {siteConfig.businessName[0]}
+                  {content.brand.logoText}
                 </span>
               </div>
               <span className="font-semibold text-lg hidden sm:block">
-                {siteConfig.businessName}
+                {content.brand.name}
               </span>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              {siteConfig.navigation.map((item) => (
+              {content.navigation.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
@@ -160,7 +160,7 @@ export function Navigation() {
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="flex flex-col space-y-4">
-              {siteConfig.navigation.map((item) => (
+              {content.navigation.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}

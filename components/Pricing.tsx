@@ -1,6 +1,6 @@
 "use client";
 
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export function Pricing() {
   return (
@@ -16,39 +16,41 @@ export function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {siteConfig.pricing.map((plan, index) => (
+          {content.pricing.tiers.map((plan, index) => (
             <div
               key={index}
               className={`p-8 rounded-2xl transition-all duration-300 hover:scale-105 ${
-                plan.featured ? "ring-2 ring-white/20" : ""
+                plan.highlight ? "ring-2 ring-white/20" : ""
               }`}
               style={{
-                background: plan.featured
+                background: plan.highlight
                   ? "rgba(255, 255, 255, 0.08)"
                   : "rgba(255, 255, 255, 0.03)",
                 backdropFilter: "blur(12px)",
                 border: "1px solid rgba(255, 255, 255, 0.08)",
               }}
             >
-              {plan.featured && (
+              {plan.highlight && (
                 <div className="inline-block px-3 py-1 rounded-full bg-gradient-primary text-xs font-medium mb-4">
                   Most Popular
                 </div>
               )}
               <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
               <div className="mb-4">
-                <span className="text-5xl font-bold">{plan.price !== "Custom" ? "$" : ""}{plan.price}</span>
-                {plan.period && <span className="text-foreground/60">/{plan.period}</span>}
+                <span className="text-5xl font-bold">
+                  {plan.priceLabel || (plan.price.monthly === 0 ? "Free" : `$${plan.price.monthly}`)}
+                </span>
+                {!plan.priceLabel && <span className="text-foreground/60">/month</span>}
               </div>
               <p className="text-foreground/70 mb-6">{plan.description}</p>
               <button
                 className={`w-full py-3 rounded-full font-medium transition-all hover:scale-105 ${
-                  plan.featured
+                  plan.highlight
                     ? "bg-white text-black hover:bg-white/90"
                     : "bg-white/10 hover:bg-white/20"
                 }`}
               >
-                {plan.cta}
+                {plan.cta.text}
               </button>
               <ul className="mt-8 space-y-3">
                 {plan.features.map((feature, idx) => (

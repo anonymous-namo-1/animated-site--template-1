@@ -1,10 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export const metadata = {
-  title: `Cookie Policy - ${siteConfig.businessName}`,
-  description: `Cookie policy for ${siteConfig.businessName}`,
+  title: `Cookie Policy - ${content.brand.name}`,
+  description: `Cookie policy for ${content.brand.name}`,
 };
 
 export default function CookiesPage() {
@@ -64,7 +64,7 @@ export default function CookiesPage() {
           <h2>Contact Us</h2>
           <p>
             If you have any questions about our use of cookies, please contact us at{" "}
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <a href={`mailto:${content.brand.email}`}>{content.brand.email}</a>
           </p>
         </article>
       </div>

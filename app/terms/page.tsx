@@ -1,10 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export const metadata = {
-  title: `Terms of Service - ${siteConfig.businessName}`,
-  description: `Terms of service for ${siteConfig.businessName}`,
+  title: `Terms of Service - ${content.brand.name}`,
+  description: `Terms of service for ${content.brand.name}`,
 };
 
 export default function TermsPage() {
@@ -20,12 +20,12 @@ export default function TermsPage() {
 
           <h2>Agreement to Terms</h2>
           <p>
-            By accessing or using {siteConfig.businessName}, you agree to be bound by these Terms of Service and all applicable laws and regulations.
+            By accessing or using {content.brand.name}, you agree to be bound by these Terms of Service and all applicable laws and regulations.
           </p>
 
           <h2>Use License</h2>
           <p>
-            Permission is granted to temporarily access the materials on {siteConfig.businessName} for personal, non-commercial use only.
+            Permission is granted to temporarily access the materials on {content.brand.name} for personal, non-commercial use only.
           </p>
 
           <h2>User Responsibilities</h2>
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
           <h2>Refunds</h2>
           <p>
-            We offer a 30-day money-back guarantee for all new subscriptions. Contact us at {siteConfig.email} to request a refund.
+            We offer a 30-day money-back guarantee for all new subscriptions. Contact us at {content.brand.email} to request a refund.
           </p>
 
           <h2>Termination</h2>
@@ -54,7 +54,7 @@ export default function TermsPage() {
 
           <h2>Limitation of Liability</h2>
           <p>
-            {siteConfig.businessName} shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.
+            {content.brand.name} shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.
           </p>
 
           <h2>Changes to Terms</h2>
@@ -65,7 +65,7 @@ export default function TermsPage() {
           <h2>Contact Us</h2>
           <p>
             If you have any questions about these Terms, please contact us at{" "}
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <a href={`mailto:${content.brand.email}`}>{content.brand.email}</a>
           </p>
         </article>
       </div>

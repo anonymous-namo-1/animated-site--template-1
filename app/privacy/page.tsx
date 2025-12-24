@@ -1,10 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export const metadata = {
-  title: `Privacy Policy - ${siteConfig.businessName}`,
-  description: `Privacy policy for ${siteConfig.businessName}`,
+  title: `Privacy Policy - ${content.brand.name}`,
+  description: `Privacy policy for ${content.brand.name}`,
 };
 
 export default function PrivacyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
 
           <h2>Introduction</h2>
           <p>
-            At {siteConfig.businessName}, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data and tell you about your privacy rights.
+            At {content.brand.name}, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data and tell you about your privacy rights.
           </p>
 
           <h2>Information We Collect</h2>
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
           <h2>Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact us at{" "}
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <a href={`mailto:${content.brand.email}`}>{content.brand.email}</a>
           </p>
         </article>
       </div>

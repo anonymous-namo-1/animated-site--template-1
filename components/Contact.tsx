@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -86,8 +86,8 @@ export function Contact() {
 
         <p className="text-center text-foreground/60 text-sm mt-8">
           Or email us directly at{" "}
-          <a href={`mailto:${siteConfig.email}`} className="text-foreground hover:underline">
-            {siteConfig.email}
+          <a href={`mailto:${content.brand.email}`} className="text-foreground hover:underline">
+            {content.brand.email}
           </a>
         </p>
       </div>

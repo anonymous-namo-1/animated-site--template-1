@@ -1,6 +1,6 @@
 "use client";
 
-import { siteConfig } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export function Features() {
   return (
@@ -16,7 +16,7 @@ export function Features() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {siteConfig.features.map((feature, index) => (
+          {content.features.items.map((feature, index) => (
             <div
               key={index}
               className="group p-8 rounded-2xl transition-all duration-300 hover:scale-105"
