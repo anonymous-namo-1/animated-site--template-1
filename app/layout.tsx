@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { siteConfig } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "DeFi Asset Defense - Blockchain Innovation",
-  description: "One-click for Asset Defense. Dive into the art assets, where innovative blockchain technology meets financial expertise.",
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
 };
 
 export default function RootLayout({
@@ -13,12 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {/* Centered max-width container - 1440px */}
-        <div className="mx-auto max-w-container px-6">
-          {children}
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
