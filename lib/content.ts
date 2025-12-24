@@ -1,79 +1,85 @@
 // ================================================
 // TEMPLATE CONTENT CONFIGURATION
 // ================================================
-// SINGLE SOURCE OF TRUTH - Edit this file to customize entire website
+// SINGLE SOURCE OF TRUTH - Edit this file to customize the entire website
+// This is a GLOBAL PREMIUM TEMPLATE - Replace all placeholder content with your brand
 
 export const content = {
   // ============================================
   // BRAND & BUSINESS INFO
+  // ⚠️ CUSTOMIZE: Replace with your brand information
   // ============================================
   brand: {
-    name: "Velocity",
-    tagline: "Ship faster, scale smarter",
-    logoText: "V",
-    domain: "getvelocity.io",
-    email: "hello@getvelocity.io",
-    phone: "+1 (555) 123-4567",
+    name: "Your Brand Name",
+    tagline: "Your Brand Tagline",
+    logoText: "YB", // Single letter or initials for logo badge
+    domain: "yourdomain.com",
+    email: "hello@yourdomain.com",
+    phone: "+1 (555) 000-0000",
     address: {
-      street: "123 Innovation Drive",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94105",
-      country: "United States",
+      street: "123 Your Street",
+      city: "Your City",
+      state: "ST",
+      zip: "00000",
+      country: "Your Country",
     },
     social: {
-      twitter: "https://twitter.com/velocity",
-      linkedin: "https://linkedin.com/company/velocity",
-      github: "https://github.com/velocity",
+      twitter: "https://twitter.com/yourbrand",
+      linkedin: "https://linkedin.com/company/yourbrand",
+      github: "https://github.com/yourbrand",
     },
   },
 
   // ============================================
   // SEO & METADATA
+  // ⚠️ CUSTOMIZE: Update for better search engine visibility
   // ============================================
   seo: {
     home: {
-      title: "Velocity - Ship faster, scale smarter",
+      title: "Your Brand Name - Your Brand Tagline",
       description:
-        "The all-in-one platform for modern teams. Collaborate, automate, and scale your operations with tools built for speed.",
+        "Your compelling description here. Describe what makes your business unique in 150-160 characters.",
     },
     pricing: {
-      title: "Pricing - Velocity",
-      description: "Simple, transparent pricing for teams of all sizes. Start free, scale as you grow.",
+      title: "Pricing - Your Brand Name",
+      description: "Transparent pricing for your product or service. Choose a plan that fits your needs.",
     },
     contact: {
-      title: "Contact Us - Velocity",
+      title: "Contact Us - Your Brand Name",
       description: "Get in touch with our team. We're here to help you succeed.",
     },
   },
 
   // ============================================
   // NAVIGATION
+  // ⚠️ CUSTOMIZE: Add/remove navigation items as needed
+  // type: "section" = scroll to section, "route" = navigate to page
   // ============================================
   navigation: [
     { label: "Features", type: "section" as const, href: "#features" },
-    { label: "Solutions", type: "route" as const, href: "/solutions" },
+    { label: "How It Works", type: "section" as const, href: "#how-it-works" },
     { label: "Pricing", type: "route" as const, href: "/pricing" },
-    { label: "Company", type: "section" as const, href: "#faq" },
+    { label: "FAQ", type: "section" as const, href: "#faq" },
     { label: "Contact", type: "route" as const, href: "/contact" },
   ],
 
   // ============================================
   // HERO SECTION
+  // ⚠️ CUSTOMIZE: Your main headline and call-to-action
   // ============================================
   hero: {
     badge: {
       icon: "✨",
-      text: "Announcing V2.0",
+      text: "New Feature Launch", // Optional announcement badge
       link: "#",
     },
-    heading: "Ship faster,",
-    headingAccent: "scale smarter",
+    heading: "Build Faster.", // Main headline (first part)
+    headingAccent: "Launch Smarter.", // Main headline (accent part - gets gradient)
     subheading:
-      "The all-in-one platform for modern teams. Collaborate, automate, and scale your operations with tools built for speed.",
+      "A modern, animated website template designed to adapt to any business. Fully customizable, responsive, and ready to deploy.",
     cta: {
-      primary: { text: "Start Free Trial", href: "/contact" },
-      secondary: { text: "See How It Works", href: "#features" },
+      primary: { text: "Get Started", href: "/contact" },
+      secondary: { text: "View Features", href: "#features" },
     },
     videoDemo: {
       enabled: true,
@@ -82,40 +88,30 @@ export const content = {
   },
 
   // ============================================
-  // FLOATING METRICS
+  // FLOATING METRICS (Hero Background Cards)
+  // ⚠️ CUSTOMIZE: Replace with your key metrics or disable by removing items
+  // Use generic labels or your actual business metrics
   // ============================================
   metrics: {
     floating: [
-      { label: "Active Teams", value: "12K+", position: "left-[8%] top-[22%]", delay: 0.8 },
-      { label: "Uptime", value: "99.9%", position: "left-[5%] bottom-[28%]", delay: 1.2 },
-      { label: "API Calls/day", value: "5.2M", position: "right-[10%] top-[18%]", delay: 1.0 },
-      { label: "Countries", value: "140+", position: "right-[12%] top-[45%]", delay: 1.4 },
-      { label: "Avg Response", value: "< 2s", position: "right-[8%] bottom-[15%]", delay: 1.6 },
+      { label: "Key Metric", value: "XX+", position: "left-[8%] top-[22%]", delay: 0.8 },
+      { label: "Feature Highlight", value: "XX%", position: "left-[5%] bottom-[28%]", delay: 1.2 },
+      { label: "Growth Indicator", value: "XXk", position: "right-[10%] top-[18%]", delay: 1.0 },
+      { label: "Performance", value: "XX+", position: "right-[12%] top-[45%]", delay: 1.4 },
+      { label: "Reliability", value: "XX%", position: "right-[8%] bottom-[15%]", delay: 1.6 },
     ],
     stats: [
-      { label: "Customer Satisfaction", value: "98%", suffix: "" },
-      { label: "Faster Deployment", value: "10x", suffix: "" },
-      { label: "Cost Reduction", value: "40%", suffix: "" },
-      { label: "Time Saved", value: "20hrs", suffix: "/week" },
+      { label: "Your Metric", value: "XX%", suffix: "" },
+      { label: "Another Stat", value: "XXx", suffix: "" },
+      { label: "Performance", value: "XX%", suffix: "" },
+      { label: "Time Saved", value: "XXhr", suffix: "/week" },
     ],
   },
 
   // ============================================
-  // SOCIAL PROOF
-  // ============================================
-  socialProof: {
-    heading: "Trusted by leading teams worldwide",
-    logos: [
-      { name: "Acme Corp", placeholder: true },
-      { name: "TechFlow", placeholder: true },
-      { name: "DataSync", placeholder: true },
-      { name: "CloudBase", placeholder: true },
-      { name: "StreamLabs", placeholder: true },
-    ],
-  },
-
-  // ============================================
-  // FEATURES
+  // FEATURES SECTION
+  // ⚠️ CUSTOMIZE: Describe your product/service capabilities
+  // Keep 4-6 features for optimal layout
   // ============================================
   features: {
     heading: "Everything you need to succeed",
@@ -123,159 +119,153 @@ export const content = {
     items: [
       {
         icon: "⚡",
-        title: "Lightning Fast",
-        description:
-          "Optimized infrastructure delivers sub-second response times globally. Your team stays productive without waiting.",
+        title: "Fast Performance",
+        description: "Built for speed with optimized code and modern architecture.",
       },
       {
         icon: "🔒",
-        title: "Enterprise Security",
-        description:
-          "Bank-level encryption, SOC 2 compliance, and granular access controls keep your data safe.",
+        title: "Secure by Design",
+        description: "Enterprise-grade security features to protect your data.",
+      },
+      {
+        icon: "🎨",
+        title: "Fully Customizable",
+        description: "Adapt every element to match your brand and workflow.",
+      },
+      {
+        icon: "📱",
+        title: "Responsive by Default",
+        description: "Perfect experience across all devices and screen sizes.",
+      },
+      {
+        icon: "⚙️",
+        title: "Modern Animations",
+        description: "Smooth, professional animations powered by GSAP.",
       },
       {
         icon: "📊",
-        title: "Real-Time Analytics",
-        description:
-          "Live dashboards and custom reports give you instant visibility into what matters most.",
-      },
-      {
-        icon: "🔗",
-        title: "Seamless Integrations",
-        description:
-          "Connect with 100+ tools you already use. REST API and webhooks for custom workflows.",
-      },
-      {
-        icon: "🎯",
-        title: "Smart Automation",
-        description:
-          "Automate repetitive tasks with visual workflows. No code required, infinite possibilities.",
-      },
-      {
-        icon: "💬",
-        title: "24/7 Support",
-        description:
-          "Expert support team available around the clock. Live chat, email, and priority phone support.",
+        title: "Scalable Layouts",
+        description: "Grows with your business from startup to enterprise.",
       },
     ],
   },
 
   // ============================================
   // HOW IT WORKS
+  // ⚠️ CUSTOMIZE: Your process or getting started steps
   // ============================================
   howItWorks: {
     heading: "Get started in minutes",
-    subheading: "Three simple steps to transform how your team works.",
+    subheading: "Three simple steps to transform your online presence.",
     steps: [
       {
         number: "1",
-        title: "Connect Your Tools",
-        description:
-          "Import your existing data and connect your favorite apps in one click. We handle the migration.",
+        title: "Customize Content",
+        description: "Update the content.ts file with your brand information and copy.",
       },
       {
         number: "2",
-        title: "Customize Your Workspace",
-        description:
-          "Tailor dashboards, workflows, and permissions to match how your team operates.",
+        title: "Adjust Branding",
+        description: "Modify colors, fonts, and styles in theme.ts to match your brand.",
       },
       {
         number: "3",
-        title: "Start Shipping",
-        description:
-          "Go live immediately. Our onboarding specialists ensure you're set up for success from day one.",
+        title: "Launch Your Site",
+        description: "Deploy to Vercel, Netlify, or your preferred hosting platform.",
       },
     ],
   },
 
   // ============================================
-  // SOLUTIONS / USE CASES
+  // SOLUTIONS (Use Cases)
+  // ⚠️ CUSTOMIZE: Who can use your product/service
   // ============================================
   solutions: {
-    heading: "Built for every team",
-    subheading: "Whether you're a startup or enterprise, we scale with you.",
+    heading: "Built for any business",
+    subheading: "A flexible template that adapts to your industry and use case.",
     items: [
+      {
+        icon: "💼",
+        title: "For Businesses",
+        description: "Perfect for showcasing your products, services, and company values.",
+        features: [
+          "Professional design",
+          "Easy to customize",
+          "Mobile responsive",
+          "SEO optimized",
+        ],
+        cta: { text: "Learn More", href: "/contact" },
+      },
       {
         icon: "🚀",
         title: "For Startups",
-        description:
-          "Move fast without breaking things. Launch features quickly with built-in best practices and templates.",
+        description: "Launch your MVP quickly with a modern, conversion-focused design.",
         features: [
-          "Free tier with generous limits",
-          "Rapid prototyping tools",
-          "Startup-friendly pricing",
-          "Expert onboarding included",
+          "Fast deployment",
+          "Scalable architecture",
+          "Growth-ready features",
+          "Analytics integration",
         ],
-        cta: { text: "Start Building", href: "/contact" },
+        cta: { text: "Get Started", href: "/contact" },
       },
       {
-        icon: "🏢",
-        title: "For Enterprises",
-        description:
-          "Enterprise-grade reliability, security, and support. Custom SLAs and dedicated infrastructure available.",
-        features: [
-          "SSO & advanced security",
-          "Dedicated account manager",
-          "Custom integrations",
-          "99.99% SLA guarantee",
-        ],
-        cta: { text: "Contact Sales", href: "/contact" },
-      },
-      {
-        icon: "🎨",
+        icon: "🎯",
         title: "For Agencies",
-        description:
-          "Manage multiple clients effortlessly. White-label options and reseller programs available.",
+        description: "Deliver client projects faster with a proven, customizable foundation.",
         features: [
-          "Multi-tenant architecture",
-          "Client billing automation",
-          "White-label branding",
-          "Agency partner program",
+          "White-label ready",
+          "Component library",
+          "Documentation included",
+          "Support available",
         ],
-        cta: { text: "Learn More", href: "/solutions" },
+        cta: { text: "View Demo", href: "#features" },
       },
     ],
   },
 
   // ============================================
   // TESTIMONIALS
+  // ⚠️ CUSTOMIZE: Add real customer testimonials or remove section
   // ============================================
   testimonials: {
-    heading: "Loved by teams worldwide",
+    heading: "Trusted by businesses worldwide",
+    subheading: "See what our customers have to say.",
     items: [
       {
         quote:
-          "Velocity cut our deployment time from days to hours. The automation features alone saved us 20 hours a week.",
-        author: "Sarah Chen",
-        role: "VP of Engineering",
-        company: "TechFlow",
-        avatar: "SC",
+          "This template saved us weeks of development time. The animations are smooth and the code is clean.",
+        author: "Customer Name",
+        role: "Job Title",
+        company: "Company Name",
+        image: "/placeholder-avatar.jpg",
       },
       {
         quote:
-          "Best investment we made this year. ROI was immediate and the support team is exceptional.",
-        author: "Marcus Johnson",
-        role: "CTO",
-        company: "DataSync",
-        avatar: "MJ",
+          "Beautiful design out of the box. We customized it to match our brand in just a few hours.",
+        author: "Another Customer",
+        role: "Position",
+        company: "Business Name",
+        image: "/placeholder-avatar.jpg",
       },
       {
         quote:
-          "We scaled from 10 to 100 employees without changing our stack. Velocity just works.",
-        author: "Emily Rodriguez",
-        role: "Head of Operations",
-        company: "CloudBase",
-        avatar: "ER",
+          "The best premium template we've used. Professional, modern, and incredibly easy to work with.",
+        author: "Third Customer",
+        role: "Title",
+        company: "Organization",
+        image: "/placeholder-avatar.jpg",
       },
     ],
   },
 
   // ============================================
   // PRICING
+  // ⚠️ CUSTOMIZE: Your pricing tiers
+  // NOTE: This template uses placeholder pricing - update with real plans
   // ============================================
   pricing: {
-    heading: "Simple, transparent pricing",
-    subheading: "Start free. Upgrade as you grow. No hidden fees, cancel anytime.",
+    heading: "Choose a plan that fits your needs",
+    subheading: "Transparent pricing for businesses of all sizes. No hidden fees.",
     toggle: {
       monthly: "Monthly",
       annual: "Annual",
@@ -284,53 +274,49 @@ export const content = {
     tiers: [
       {
         name: "Starter",
-        description: "Perfect for individuals and small teams just getting started.",
-        price: { monthly: 0, annual: 0 },
+        description: "Perfect for small businesses and solo entrepreneurs.",
+        price: { monthly: null, annual: null },
+        priceLabel: "Contact Sales", // Use priceLabel for custom pricing
         highlight: false,
-        cta: { text: "Start Free", href: "/contact" },
+        cta: { text: "Get Started", href: "/contact" },
         features: [
-          "Up to 5 team members",
-          "10GB storage",
-          "Basic analytics",
-          "Email support",
-          "100 API calls/day",
-          "Community access",
+          "Your feature here",
+          "Another feature",
+          "Third feature",
+          "Fourth feature",
+          "Fifth feature",
         ],
       },
       {
         name: "Professional",
-        description: "For growing teams that need more power and flexibility.",
-        price: { monthly: 49, annual: 470 },
-        highlight: true,
-        cta: { text: "Start 14-Day Trial", href: "/contact" },
+        description: "For growing businesses that need more power.",
+        price: { monthly: null, annual: null },
+        priceLabel: "Contact Sales",
+        highlight: true, // Highlighted tier
+        cta: { text: "Contact Sales", href: "/contact" },
         features: [
-          "Up to 25 team members",
-          "100GB storage",
-          "Advanced analytics",
-          "Priority email & chat",
-          "Unlimited API calls",
-          "Custom integrations",
-          "Advanced automation",
-          "SSO (SAML)",
+          "Everything in Starter",
+          "Additional feature",
+          "Premium feature",
+          "Advanced feature",
+          "Priority support",
+          "Custom integration",
         ],
       },
       {
         name: "Enterprise",
-        description: "Custom solutions for large organizations with specific needs.",
+        description: "Custom solutions for large organizations.",
         price: { monthly: null, annual: null },
         priceLabel: "Custom",
         highlight: false,
         cta: { text: "Contact Sales", href: "/contact" },
         features: [
-          "Unlimited team members",
-          "Unlimited storage",
-          "Custom analytics",
-          "24/7 phone support",
-          "Dedicated infrastructure",
-          "SLA guarantee (99.99%)",
-          "Custom contracts",
-          "On-premise deployment",
-          "Dedicated account manager",
+          "Everything in Professional",
+          "Unlimited access",
+          "Dedicated support",
+          "Custom development",
+          "SLA guarantee",
+          "White-label options",
         ],
       },
     ],
@@ -338,105 +324,100 @@ export const content = {
 
   // ============================================
   // FAQ
+  // ⚠️ CUSTOMIZE: Answer common customer questions
   // ============================================
   faq: {
     heading: "Frequently asked questions",
-    subheading: "Everything you need to know about our platform.",
+    subheading: "Got questions? We've got answers.",
     items: [
       {
-        q: "How long is the free trial?",
-        a: "All paid plans include a 14-day free trial with full access to all features. No credit card required to start.",
+        q: "Is this template customizable?",
+        a: "Yes! This template is fully customizable. You can modify all content, colors, fonts, and layouts through the configuration files. No deep technical knowledge required.",
       },
       {
-        q: "Can I change plans later?",
-        a: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any charges.",
+        q: "Do I need coding knowledge to use this?",
+        a: "Basic knowledge is helpful but not required. Most customization is done through simple configuration files. We provide detailed documentation to guide you through the process.",
       },
       {
-        q: "What payment methods do you accept?",
-        a: "We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and ACH transfers for annual plans. Invoicing available for Enterprise customers.",
+        q: "Can I use this for any type of business?",
+        a: "Absolutely! This is a universal template designed to work for any industry - SaaS, e-commerce, agencies, consultants, local businesses, and more.",
       },
       {
-        q: "Is my data secure?",
-        a: "Absolutely. We use bank-level AES-256 encryption, are SOC 2 Type II certified, and are fully GDPR compliant. Your data is encrypted at rest and in transit.",
+        q: "Is it mobile responsive?",
+        a: "Yes, the template is fully responsive and optimized for all devices - desktop, tablet, and mobile. It automatically adapts to different screen sizes.",
       },
       {
-        q: "What's your refund policy?",
-        a: "We offer a 30-day money-back guarantee for all annual plans. If you're not satisfied, contact support for a full refund—no questions asked.",
+        q: "What tools and frameworks does it use?",
+        a: "Built with Next.js 15, React, TypeScript, Tailwind CSS, and GSAP for animations. Modern, performant, and production-ready.",
       },
       {
-        q: "Do you offer discounts for nonprofits or education?",
-        a: "Yes! We offer 50% off our Professional plan for qualifying nonprofits and educational institutions. Contact sales@getvelocity.io to apply.",
-      },
-      {
-        q: "Can I integrate with my existing tools?",
-        a: "We offer 100+ pre-built integrations including Slack, GitHub, Salesforce, and more. Plus, our REST API and webhooks let you build custom integrations.",
-      },
-      {
-        q: "What kind of support do you offer?",
-        a: "Starter: Email support (24hr response). Professional: Priority email & live chat. Enterprise: 24/7 phone support + dedicated account manager.",
+        q: "Do you provide support?",
+        a: "Yes, we provide documentation and support to help you get started. Contact us if you need assistance with customization or deployment.",
       },
     ],
   },
 
   // ============================================
-  // CONTACT
+  // CONTACT PAGE
+  // ⚠️ CUSTOMIZE: Contact form configuration
   // ============================================
   contact: {
-    heading: "Let's talk",
-    subheading: "Our team is here to help you succeed. Get in touch and we'll respond within 24 hours.",
+    heading: "Get in touch",
+    subheading: "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
     form: {
       namePlaceholder: "Your name",
-      emailPlaceholder: "you@company.com",
-      messagePlaceholder: "Tell us about your project...",
-      submitText: "Send Message",
-      successMessage: "Thanks! We'll be in touch within 24 hours.",
-      errorMessage: "Oops! Something went wrong. Please try again or email us directly.",
+      emailPlaceholder: "you@example.com",
+      messagePlaceholder: "Tell us how we can help...",
+      submitButton: "Send Message",
+      successMessage: "Thank you! We'll be in touch soon.",
     },
     methods: [
       {
         icon: "📧",
         label: "Email",
-        value: "hello@getvelocity.io",
-        href: "mailto:hello@getvelocity.io",
-      },
-      {
-        icon: "💬",
-        label: "Live Chat",
-        value: "Available 24/7",
-        href: "#",
+        value: "hello@yourdomain.com",
+        href: "mailto:hello@yourdomain.com",
       },
       {
         icon: "📞",
         label: "Phone",
-        value: "+1 (555) 123-4567",
-        href: "tel:+15551234567",
+        value: "+1 (555) 000-0000",
+        href: "tel:+15550000000",
+      },
+      {
+        icon: "📍",
+        label: "Office",
+        value: "123 Your Street, Your City, ST 00000",
+        href: "#",
       },
     ],
   },
 
   // ============================================
   // FOOTER
+  // ⚠️ CUSTOMIZE: Footer links and information
   // ============================================
   footer: {
-    description: "The all-in-one platform for modern teams. Ship faster, scale smarter.",
+    description:
+      "A modern, animated website template designed for businesses of all sizes. Built with Next.js and GSAP.",
     columns: {
       Product: [
         { label: "Features", href: "#features" },
-        { label: "Solutions", href: "/solutions" },
         { label: "Pricing", href: "/pricing" },
-        { label: "Integrations", href: "/solutions#integrations" },
+        { label: "Demo", href: "#" },
+        { label: "Documentation", href: "#" },
       ],
       Company: [
-        { label: "About", href: "/about" },
-        { label: "Blog", href: "/blog" },
-        { label: "Careers", href: "/careers" },
+        { label: "About", href: "#" },
+        { label: "Blog", href: "#" },
+        { label: "Careers", href: "#" },
         { label: "Contact", href: "/contact" },
       ],
       Resources: [
-        { label: "Documentation", href: "/docs" },
-        { label: "API Reference", href: "/api" },
+        { label: "Help Center", href: "#" },
         { label: "Support", href: "/contact" },
-        { label: "Status", href: "https://status.getvelocity.io" },
+        { label: "Community", href: "#" },
+        { label: "Status", href: "#" },
       ],
       Legal: [
         { label: "Privacy Policy", href: "/privacy" },
@@ -447,5 +428,3 @@ export const content = {
     },
   },
 };
-
-export type Content = typeof content;
