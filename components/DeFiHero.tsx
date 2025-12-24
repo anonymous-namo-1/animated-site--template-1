@@ -81,9 +81,24 @@ function AssetCard({ name, value, position, delay }: AssetCardProps) {
       className={`asset-card absolute ${position} cursor-pointer`}
       style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
     >
-      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-3 hover:bg-white/10 transition-colors">
+      {/* GLASSMORPHISM UI - Premium glass card */}
+      <div
+        className="relative rounded-2xl px-4 py-3 transition-all duration-300"
+        style={{
+          background: "rgba(255, 255, 255, 0.06)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          border: "1px solid rgba(255, 255, 255, 0.08)",
+        }}
+      >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center"
+            style={{
+              background: "rgba(255, 255, 255, 0.12)",
+              backdropFilter: "blur(8px)",
+            }}
+          >
             <div className="w-3 h-3 rounded-full bg-white/80" />
           </div>
           <div>
@@ -98,7 +113,8 @@ function AssetCard({ name, value, position, delay }: AssetCardProps) {
 
 export function DeFiHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const fogLayerRef = useRef<HTMLDivElement>(null);
+  const lightLinesRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -110,83 +126,126 @@ export function DeFiHero() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (!bgRef.current || !sectionRef.current) return;
+    if (!sectionRef.current) return;
 
-    // === BACKGROUND GRADIENT ANIMATION ===
-    if (!prefersReducedMotion) {
-      const gradient1 = bgRef.current.querySelector(".gradient-1") as HTMLElement;
-      const gradient2 = bgRef.current.querySelector(".gradient-2") as HTMLElement;
-      const gradient3 = bgRef.current.querySelector(".gradient-3") as HTMLElement;
+    // ================================
+    // LAYER 2 — FOG / BLOOM GRADIENT ANIMATION
+    // ================================
+    if (!prefersReducedMotion && fogLayerRef.current) {
+      const fog1 = fogLayerRef.current.querySelector(".fog-1") as HTMLElement;
+      const fog2 = fogLayerRef.current.querySelector(".fog-2") as HTMLElement;
+      const fog3 = fogLayerRef.current.querySelector(".fog-3") as HTMLElement;
 
-      const bgTl = gsap.timeline({
+      // Very slow, subtle drift animation (35s loop)
+      const fogTl = gsap.timeline({
         repeat: -1,
         defaults: { ease: "sine.inOut" },
       });
 
-      bgTl
+      fogTl
         .to(
-          gradient1,
+          fog1,
           {
-            x: "20%",
-            y: "-15%",
-            opacity: 0.3,
-            duration: 12.5,
+            x: "15%",
+            y: "-10%",
+            opacity: 0.14,
+            duration: 17.5,
           },
           0
         )
         .to(
-          gradient1,
+          fog1,
           {
             x: "0%",
             y: "0%",
-            opacity: 0.2,
-            duration: 12.5,
+            opacity: 0.08,
+            duration: 17.5,
           },
-          12.5
+          17.5
         )
         .to(
-          gradient2,
+          fog2,
           {
-            x: "-15%",
-            y: "20%",
-            opacity: 0.35,
-            duration: 12.5,
+            x: "-12%",
+            y: "18%",
+            opacity: 0.16,
+            duration: 17.5,
           },
           0
         )
         .to(
-          gradient2,
+          fog2,
           {
             x: "0%",
             y: "0%",
-            opacity: 0.25,
-            duration: 12.5,
+            opacity: 0.10,
+            duration: 17.5,
           },
-          12.5
+          17.5
         )
         .to(
-          gradient3,
+          fog3,
           {
-            x: "10%",
-            y: "25%",
-            opacity: 0.25,
-            duration: 12.5,
+            x: "8%",
+            y: "15%",
+            opacity: 0.12,
+            duration: 17.5,
           },
           0
         )
         .to(
-          gradient3,
+          fog3,
           {
             x: "0%",
             y: "0%",
-            opacity: 0.15,
-            duration: 12.5,
+            opacity: 0.08,
+            duration: 17.5,
           },
-          12.5
+          17.5
         );
     }
 
-    // === HERO TEXT ENTRANCE ANIMATIONS ===
+    // ================================
+    // LAYER 3 — VERTICAL LIGHT LINES ANIMATION
+    // ================================
+    if (!prefersReducedMotion && lightLinesRef.current) {
+      const lines = lightLinesRef.current.querySelectorAll(".light-line-glow");
+
+      lines.forEach((glow, index) => {
+        // Randomize animation parameters for each line
+        const duration = 4 + Math.random() * 3; // 4-7s
+        const delay = Math.random() * 3; // 0-3s delay
+
+        gsap.fromTo(
+          glow,
+          {
+            y: "-120px",
+            opacity: 0,
+          },
+          {
+            y: "100vh",
+            opacity: 1,
+            duration: duration,
+            ease: "none",
+            repeat: -1,
+            delay: delay,
+            modifiers: {
+              opacity: (value) => {
+                // Fade in/out during travel for smoother effect
+                const progress = parseFloat(value);
+                if (progress < 0.2) return (progress / 0.2).toString();
+                if (progress > 0.8) return ((1 - progress) / 0.2).toString();
+                return "1";
+              },
+            },
+          }
+        );
+      });
+    }
+
+    // ================================
+    // HERO TEXT ENTRANCE ANIMATIONS
+    // ================================
     const entranceTl = gsap.timeline({
       defaults: { ease: "power2.out" },
     });
@@ -232,121 +291,38 @@ export function DeFiHero() {
         );
     }
 
-    // === PLAY BUTTON PULSE ANIMATION ===
+    // ================================
+    // PLAY BUTTON PULSE ANIMATION
+    // ================================
     if (!prefersReducedMotion && playButtonRef.current) {
       gsap.to(playButtonRef.current, {
-        scale: 1.1,
-        duration: 1.5,
+        scale: 1.08,
+        duration: 2,
         ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
       });
 
-      // Pulse ring effect
       const rings = playButtonRef.current.querySelectorAll(".pulse-ring");
       rings.forEach((ring, index) => {
         gsap.fromTo(
           ring,
-          { scale: 1, opacity: 0.5 },
+          { scale: 1, opacity: 0.4 },
           {
-            scale: 1.8,
+            scale: 1.6,
             opacity: 0,
-            duration: 2,
+            duration: 2.5,
             ease: "power2.out",
             repeat: -1,
-            delay: index * 0.5,
+            delay: index * 0.6,
           }
         );
       });
     }
 
-    // === SCROLL-BASED ANIMATIONS ===
-    if (!prefersReducedMotion) {
-      const scrollTriggers: ScrollTrigger[] = [];
-
-      const headlineST = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=60vh",
-        scrub: 1,
-        onUpdate: (self) => {
-          if (headlineRef.current) {
-            gsap.to(headlineRef.current, {
-              y: -60 * self.progress,
-              opacity: 1 - self.progress * 0.7,
-              duration: 0.1,
-              overwrite: "auto",
-            });
-          }
-        },
-      });
-      scrollTriggers.push(headlineST);
-
-      const subheadingST = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=60vh",
-        scrub: 1,
-        onUpdate: (self) => {
-          if (subheadingRef.current) {
-            gsap.to(subheadingRef.current, {
-              y: -50 * self.progress,
-              opacity: 1 - self.progress * 0.6,
-              duration: 0.1,
-              overwrite: "auto",
-            });
-          }
-        },
-      });
-      scrollTriggers.push(subheadingST);
-
-      const ctaST = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=60vh",
-        scrub: 1,
-        onUpdate: (self) => {
-          if (ctaRef.current) {
-            gsap.to(ctaRef.current, {
-              y: -40 * self.progress,
-              opacity: 1 - self.progress * 0.8,
-              duration: 0.1,
-              overwrite: "auto",
-            });
-          }
-        },
-      });
-      scrollTriggers.push(ctaST);
-
-      // Asset cards fade out on scroll
-      const cards = document.querySelectorAll(".asset-card");
-      cards.forEach((card) => {
-        const cardST = ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=60vh",
-          scrub: 1,
-          onUpdate: (self) => {
-            gsap.to(card, {
-              opacity: 1 - self.progress * 0.9,
-              y: `+=${-50 * self.progress}`,
-              duration: 0.1,
-              overwrite: "auto",
-            });
-          },
-        });
-        scrollTriggers.push(cardST);
-      });
-
-      return () => {
-        scrollTriggers.forEach((st) => st.kill());
-        gsap.killTweensOf([".gradient-1", ".gradient-2", ".gradient-3"]);
-        entranceTl.kill();
-      };
-    }
-
+    // Cleanup
     return () => {
-      gsap.killTweensOf([".gradient-1", ".gradient-2", ".gradient-3"]);
+      gsap.killTweensOf([".fog-1", ".fog-2", ".fog-3", ".light-line-glow"]);
       entranceTl.kill();
     };
   }, []);
@@ -356,39 +332,106 @@ export function DeFiHero() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* Animated background gradient layer */}
+      {/* ================================ */}
+      {/* LAYER 1 — BASE BLACK BACKGROUND */}
+      {/* ================================ */}
       <div
-        ref={bgRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "#050505",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ================================ */}
+      {/* LAYER 2 — FOG / BLOOM GRADIENTS */}
+      {/* ================================ */}
+      <div
+        ref={fogLayerRef}
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
       >
+        {/* Fog bloom 1 - Desaturated cyan */}
         <div
-          className="gradient-1 absolute top-0 left-0 w-[800px] h-[800px] rounded-full blur-3xl opacity-20"
+          className="fog-1 absolute top-[-10%] left-[-5%] w-[900px] h-[900px] rounded-full opacity-[0.08]"
           style={{
-            background: "var(--gradient-primary)",
+            background: "radial-gradient(circle, rgba(120, 180, 200, 0.4) 0%, transparent 70%)",
+            filter: "blur(300px)",
             transform: "translate3d(0, 0, 0)",
             willChange: "transform, opacity",
           }}
         />
+
+        {/* Fog bloom 2 - Desaturated green/teal */}
         <div
-          className="gradient-2 absolute bottom-0 right-0 w-[700px] h-[700px] rounded-full blur-3xl opacity-25"
+          className="fog-2 absolute bottom-[-10%] right-[-5%] w-[1000px] h-[1000px] rounded-full opacity-[0.10]"
           style={{
-            background: "var(--gradient-secondary)",
+            background: "radial-gradient(circle, rgba(100, 160, 140, 0.4) 0%, transparent 70%)",
+            filter: "blur(350px)",
             transform: "translate3d(0, 0, 0)",
             willChange: "transform, opacity",
           }}
         />
+
+        {/* Fog bloom 3 - Cool gray */}
         <div
-          className="gradient-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-15"
+          className="fog-3 absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-[0.08]"
           style={{
-            background: "var(--gradient-accent)",
+            background: "radial-gradient(circle, rgba(140, 150, 160, 0.3) 0%, transparent 70%)",
+            filter: "blur(280px)",
             transform: "translate3d(-50%, -50%, 0)",
             willChange: "transform, opacity",
           }}
         />
       </div>
 
-      {/* Floating Asset Cards */}
+      {/* ================================ */}
+      {/* LAYER 3 — VERTICAL LIGHT LINES */}
+      {/* ================================ */}
+      <div
+        ref={lightLinesRef}
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        {/* Generate 12 vertical lines with traveling glows */}
+        {[5, 12, 22, 35, 45, 55, 62, 70, 78, 85, 92, 97].map((leftPos, i) => (
+          <div
+            key={i}
+            className="absolute top-0 h-[140%]"
+            style={{
+              left: `${leftPos}%`,
+              width: "1px",
+              background: "rgba(255, 255, 255, 0.08)",
+            }}
+          >
+            {/* Traveling glow inside line */}
+            <div
+              className="light-line-glow absolute left-0 w-full"
+              style={{
+                height: "100px",
+                background: "linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)",
+                filter: "blur(8px)",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* ================================ */}
+      {/* LAYER 4 — NOISE TEXTURE */}
+      {/* ================================ */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ================================ */}
+      {/* FLOATING ASSET CARDS - GLASSMORPHISM */}
+      {/* ================================ */}
       <AssetCard
         name="Cortex"
         value="20 NFTs"
@@ -420,12 +463,20 @@ export function DeFiHero() {
         delay={1.6}
       />
 
-      {/* Hero content container */}
+      {/* ================================ */}
+      {/* HERO CONTENT */}
+      {/* ================================ */}
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-6">
-        {/* Unlock Badge */}
+        {/* Unlock Badge - Glassmorphism */}
         <div
           ref={unlockBadgeRef}
-          className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
+          style={{
+            background: "rgba(255, 255, 255, 0.06)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+          }}
         >
           <span className="text-sm text-foreground/80">
             🔓 Unlock Your Assets Spark!
@@ -462,20 +513,34 @@ export function DeFiHero() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <button className="px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-all hover:scale-105">
+          <button
+            className="px-8 py-4 rounded-full font-medium transition-all hover:scale-105"
+            style={{
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+              color: "white",
+            }}
+          >
             Discover More
           </button>
         </div>
 
-        {/* Video Play Button */}
+        {/* Video Play Button - Glassmorphism */}
         <button
           ref={playButtonRef}
-          className="relative w-16 h-16 mx-auto mb-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors group"
+          className="relative w-16 h-16 mx-auto mb-12 rounded-full flex items-center justify-center transition-all group"
+          style={{
+            background: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+          }}
           aria-label="Play video"
         >
           {/* Pulse rings */}
-          <div className="pulse-ring absolute inset-0 rounded-full border-2 border-white/40" />
-          <div className="pulse-ring absolute inset-0 rounded-full border-2 border-white/40" />
+          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
+          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
 
           {/* Play icon */}
           <svg className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
