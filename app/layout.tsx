@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Animated Landing Page",
-  description: "A modern animated landing page built with Next.js",
+  title: "DeFi Asset Defense - Blockchain Innovation",
+  description: "One-click for Asset Defense. Dive into the art assets, where innovative blockchain technology meets financial expertise.",
 };
 
 export default function RootLayout({

@@ -1,9 +1,11 @@
-import { HomeHero } from "@/components/HomeHero";
+import { Navigation } from "@/components/Navigation";
+import { DeFiHero } from "@/components/DeFiHero";
 
 export default function Home() {
   return (
     <main>
-      <HomeHero />
+      <Navigation />
+      <DeFiHero />
     </main>
   );
 }
