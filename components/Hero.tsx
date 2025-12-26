@@ -4,113 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { content } from "@/lib/content";
 
-interface FloatingMetricProps {
-  label: string;
-  value: string;
-  position: string;
-  delay: number;
-}
-
-function FloatingMetric({ label, value, position, delay }: FloatingMetricProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion || !cardRef.current) return;
-
-    // Entrance animation
-    gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, scale: 0.8, y: 20 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.8,
-        delay: delay,
-        ease: "back.out(1.2)",
-      }
-    );
-
-    // Floating animation
-    gsap.to(cardRef.current, {
-      y: "+=15",
-      duration: 2.5 + delay * 0.5,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-    });
-
-    // Hover effect
-    const card = cardRef.current;
-
-    const handleMouseEnter = () => {
-      gsap.to(card, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    };
-
-    card.addEventListener("mouseenter", handleMouseEnter);
-    card.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      card.removeEventListener("mouseenter", handleMouseEnter);
-      card.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [delay]);
-
-  return (
-    <div
-      ref={cardRef}
-      className={`floating-metric absolute ${position} cursor-pointer pointer-events-auto z-[5]`}
-      style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
-    >
-      <div
-        className="relative rounded-2xl px-4 py-3 transition-all duration-300"
-        style={{
-          background: "rgba(255, 255, 255, 0.06)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
-        }}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center"
-            style={{
-              background: "rgba(255, 255, 255, 0.12)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
-            <div className="w-3 h-3 rounded-full bg-white/80" />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-foreground">{label}</p>
-            <p className="text-xs text-foreground/60">{value}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const fogLayerRef = useRef<HTMLDivElement>(null);
-  const lightLinesRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -141,37 +37,6 @@ export function Hero() {
         .to(fog2, { x: "0%", y: "0%", opacity: 0.10, duration: 17.5 }, 17.5)
         .to(fog3, { x: "8%", y: "15%", opacity: 0.12, duration: 17.5 }, 0)
         .to(fog3, { x: "0%", y: "0%", opacity: 0.08, duration: 17.5 }, 17.5);
-    }
-
-    // VERTICAL LIGHT LINES ANIMATION
-    if (!prefersReducedMotion && lightLinesRef.current) {
-      const lines = lightLinesRef.current.querySelectorAll(".light-line-glow");
-
-      lines.forEach((glow) => {
-        const duration = 4 + Math.random() * 3;
-        const delay = Math.random() * 3;
-
-        gsap.fromTo(
-          glow,
-          { y: "-120px", opacity: 0 },
-          {
-            y: "100vh",
-            opacity: 1,
-            duration: duration,
-            ease: "none",
-            repeat: -1,
-            delay: delay,
-            modifiers: {
-              opacity: (value) => {
-                const progress = parseFloat(value);
-                if (progress < 0.2) return (progress / 0.2).toString();
-                if (progress > 0.8) return ((1 - progress) / 0.2).toString();
-                return "1";
-              },
-            },
-          }
-        );
-      });
     }
 
     // HERO TEXT ENTRANCE ANIMATIONS
@@ -222,7 +87,7 @@ export function Hero() {
 
     // Cleanup
     return () => {
-      gsap.killTweensOf([".fog-1", ".fog-2", ".fog-3", ".light-line-glow"]);
+      gsap.killTweensOf([".fog-1", ".fog-2", ".fog-3"]);
       entranceTl.kill();
     };
   }, []);
@@ -279,31 +144,7 @@ export function Hero() {
         />
       </div>
 
-      {/* LAYER 3 — VERTICAL LIGHT LINES */}
-      <div ref={lightLinesRef} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[40, 50, 60].map((leftPos, i) => (
-          <div
-            key={i}
-            className="absolute top-0 h-[140%]"
-            style={{
-              left: `${leftPos}%`,
-              width: "1px",
-              background: "rgba(255, 255, 255, 0.08)",
-            }}
-          >
-            <div
-              className="light-line-glow absolute left-0 w-full"
-              style={{
-                height: "100px",
-                background: "linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)",
-                filter: "blur(8px)",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* LAYER 4 — NOISE TEXTURE */}
+      {/* LAYER 3 — NOISE TEXTURE */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.05]"
         style={{
@@ -312,11 +153,6 @@ export function Hero() {
         }}
         aria-hidden="true"
       />
-
-      {/* FLOATING METRICS */}
-      {content.metrics.floating.map((metric, index) => (
-        <FloatingMetric key={index} {...metric} />
-      ))}
 
       {/* HERO CONTENT */}
       <div className="relative z-20 w-full max-w-4xl mx-auto text-center px-6">

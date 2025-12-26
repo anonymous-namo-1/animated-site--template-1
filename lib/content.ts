@@ -94,10 +94,12 @@ export const content = {
   // ============================================
   metrics: {
     floating: [
-      { label: "Key Metric", value: "XX+", position: "left-[5%] top-[20%]", delay: 0.8 },
-      { label: "Feature Highlight", value: "XX%", position: "left-[8%] bottom-[25%]", delay: 1.2 },
-      { label: "Growth Indicator", value: "XXk", position: "right-[5%] top-[18%]", delay: 1.0 },
-      { label: "Performance", value: "XX+", position: "right-[10%] bottom-[35%]", delay: 1.4 },
+      // Floating metrics disabled to prevent overlap with hero content
+      // Uncomment and adjust positions as needed for your design
+      // { label: "Key Metric", value: "XX+", position: "left-[5%] top-[20%]", delay: 0.8 },
+      // { label: "Feature Highlight", value: "XX%", position: "left-[8%] bottom-[25%]", delay: 1.2 },
+      // { label: "Growth Indicator", value: "XXk", position: "right-[5%] top-[18%]", delay: 1.0 },
+      // { label: "Performance", value: "XX+", position: "right-[10%] bottom-[35%]", delay: 1.4 },
     ],
     stats: [
       { label: "Your Metric", value: "XX%", suffix: "" },
