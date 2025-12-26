@@ -75,7 +75,7 @@ function FloatingMetric({ label, value, position, delay }: FloatingMetricProps) 
   return (
     <div
       ref={cardRef}
-      className={`floating-metric absolute ${position} cursor-pointer pointer-events-auto`}
+      className={`floating-metric absolute ${position} cursor-pointer pointer-events-auto z-[5]`}
       style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
     >
       <div
@@ -319,11 +319,11 @@ export function Hero() {
       ))}
 
       {/* HERO CONTENT */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-6">
+      <div className="relative z-20 w-full max-w-4xl mx-auto text-center px-6">
         {/* Play Button */}
         <button
           ref={playButtonRef}
-          className="relative w-16 h-16 mx-auto mb-8 rounded-full flex items-center justify-center transition-all group"
+          className="relative w-16 h-16 mx-auto mb-8 rounded-full flex items-center justify-center transition-all group z-20"
           style={{
             background: "rgba(255, 255, 255, 0.08)",
             backdropFilter: "blur(16px)",
