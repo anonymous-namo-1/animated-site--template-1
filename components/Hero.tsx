@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollIndicator } from "./ScrollIndicator";
 import { content } from "@/lib/content";
 
 interface FloatingMetricProps {
@@ -182,16 +181,16 @@ export function Hero() {
 
     if (prefersReducedMotion) {
       entranceTl
-        .fromTo(headlineRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0)
-        .fromTo(subheadingRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.1)
-        .fromTo(ctaRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.2)
-        .fromTo(playButtonRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3);
+        .fromTo(playButtonRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0)
+        .fromTo(headlineRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.1)
+        .fromTo(subheadingRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.2)
+        .fromTo(ctaRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3);
     } else {
       entranceTl
-        .fromTo(headlineRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-        .fromTo(subheadingRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.5)
-        .fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.8)
-        .fromTo(playButtonRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8 }, 0.5);
+        .fromTo(playButtonRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8 }, 0)
+        .fromTo(headlineRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.3)
+        .fromTo(subheadingRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.6)
+        .fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.9);
     }
 
     // PLAY BUTTON PULSE ANIMATION
@@ -282,7 +281,7 @@ export function Hero() {
 
       {/* LAYER 3 — VERTICAL LIGHT LINES */}
       <div ref={lightLinesRef} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[3, 15, 28, 42, 58, 72, 85, 97].map((leftPos, i) => (
+        {[40, 50, 60].map((leftPos, i) => (
           <div
             key={i}
             className="absolute top-0 h-[140%]"
@@ -321,6 +320,25 @@ export function Hero() {
 
       {/* HERO CONTENT */}
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-6">
+        {/* Play Button */}
+        <button
+          ref={playButtonRef}
+          className="relative w-16 h-16 mx-auto mb-8 rounded-full flex items-center justify-center transition-all group"
+          style={{
+            background: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+          }}
+          aria-label="Watch demo"
+        >
+          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
+          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
+          <svg className="w-6 h-6 text-white ml-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+
         {/* Main heading */}
         <h1 ref={headlineRef} className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
           <span className="inline-block">{content.hero.heading}</span>{" "}
@@ -361,31 +379,7 @@ export function Hero() {
             {content.hero.cta.secondary.text}
           </button>
         </div>
-
-        {/* Play Button - Repositioned */}
-        <div className="flex items-center justify-center gap-3 mb-16">
-          <button
-            ref={playButtonRef}
-            className="relative w-14 h-14 rounded-full flex items-center justify-center transition-all group"
-            style={{
-              background: "rgba(255, 255, 255, 0.08)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-            }}
-            aria-label="Watch demo"
-          >
-            <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
-            <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
-            <svg className="w-5 h-5 text-white ml-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
-          <span className="text-sm text-foreground/70">Watch demo</span>
-        </div>
       </div>
-
-      <ScrollIndicator />
     </section>
   );
 }
