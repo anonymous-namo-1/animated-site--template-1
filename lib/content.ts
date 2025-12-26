@@ -94,11 +94,11 @@ export const content = {
   // ============================================
   metrics: {
     floating: [
-      { label: "Key Metric", value: "XX+", position: "left-[8%] top-[22%]", delay: 0.8 },
-      { label: "Feature Highlight", value: "XX%", position: "left-[5%] bottom-[28%]", delay: 1.2 },
-      { label: "Growth Indicator", value: "XXk", position: "right-[10%] top-[18%]", delay: 1.0 },
-      { label: "Performance", value: "XX+", position: "right-[12%] top-[45%]", delay: 1.4 },
-      { label: "Reliability", value: "XX%", position: "right-[8%] bottom-[15%]", delay: 1.6 },
+      { label: "Key Metric", value: "XX+", position: "left-[8%] top-[20%]", delay: 0.8 },
+      { label: "Feature Highlight", value: "XX%", position: "left-[6%] bottom-[25%]", delay: 1.2 },
+      { label: "Growth Indicator", value: "XXk", position: "right-[10%] top-[15%]", delay: 1.0 },
+      { label: "Performance", value: "XX+", position: "right-[12%] top-[50%]", delay: 1.4 },
+      { label: "Reliability", value: "XX%", position: "right-[10%] bottom-[20%]", delay: 1.6 },
     ],
     stats: [
       { label: "Your Metric", value: "XX%", suffix: "" },

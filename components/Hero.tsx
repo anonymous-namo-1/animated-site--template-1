@@ -116,7 +116,6 @@ export function Hero() {
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const playButtonRef = useRef<HTMLButtonElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -183,18 +182,16 @@ export function Hero() {
 
     if (prefersReducedMotion) {
       entranceTl
-        .fromTo(badgeRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0)
-        .fromTo(headlineRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.1)
-        .fromTo(subheadingRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.2)
-        .fromTo(ctaRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3)
-        .fromTo(playButtonRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.4);
+        .fromTo(headlineRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0)
+        .fromTo(subheadingRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.1)
+        .fromTo(ctaRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.2)
+        .fromTo(playButtonRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3);
     } else {
       entranceTl
-        .fromTo(badgeRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.3)
-        .fromTo(headlineRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.5)
-        .fromTo(subheadingRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.8)
-        .fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 1.0)
-        .fromTo(playButtonRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8 }, 0.7);
+        .fromTo(headlineRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2)
+        .fromTo(subheadingRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.5)
+        .fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.8)
+        .fromTo(playButtonRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8 }, 0.5);
     }
 
     // PLAY BUTTON PULSE ANIMATION
@@ -285,7 +282,7 @@ export function Hero() {
 
       {/* LAYER 3 — VERTICAL LIGHT LINES */}
       <div ref={lightLinesRef} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[5, 12, 22, 35, 45, 55, 62, 70, 78, 85, 92, 97].map((leftPos, i) => (
+        {[3, 15, 28, 42, 58, 72, 85, 97].map((leftPos, i) => (
           <div
             key={i}
             className="absolute top-0 h-[140%]"
@@ -324,20 +321,6 @@ export function Hero() {
 
       {/* HERO CONTENT */}
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-6">
-        {/* Badge */}
-        <div
-          ref={badgeRef}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
-          style={{
-            background: "rgba(255, 255, 255, 0.06)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            border: "1px solid rgba(255, 255, 255, 0.08)",
-          }}
-        >
-          <span className="text-sm text-foreground/80">{content.hero.badge.icon} {content.hero.badge.text}</span>
-        </div>
-
         {/* Main heading */}
         <h1 ref={headlineRef} className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
           <span className="inline-block">{content.hero.heading}</span>{" "}
@@ -355,7 +338,7 @@ export function Hero() {
         </p>
 
         {/* CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <button
             onClick={() => handleCTAClick(content.hero.cta.primary.href)}
             className="group px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-all hover:scale-105 flex items-center gap-2"
@@ -379,24 +362,27 @@ export function Hero() {
           </button>
         </div>
 
-        {/* Play Button */}
-        <button
-          ref={playButtonRef}
-          className="relative w-16 h-16 mx-auto mb-12 rounded-full flex items-center justify-center transition-all group"
-          style={{
-            background: "rgba(255, 255, 255, 0.08)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(255, 255, 255, 0.12)",
-          }}
-          aria-label="Watch demo"
-        >
-          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
-          <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
-          <svg className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
+        {/* Play Button - Repositioned */}
+        <div className="flex items-center justify-center gap-3 mb-16">
+          <button
+            ref={playButtonRef}
+            className="relative w-14 h-14 rounded-full flex items-center justify-center transition-all group"
+            style={{
+              background: "rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+            }}
+            aria-label="Watch demo"
+          >
+            <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
+            <div className="pulse-ring absolute inset-0 rounded-full border border-white/30" />
+            <svg className="w-5 h-5 text-white ml-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+          <span className="text-sm text-foreground/70">Watch demo</span>
+        </div>
       </div>
 
       <ScrollIndicator />
