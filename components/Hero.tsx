@@ -4,69 +4,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { content } from "@/lib/content";
 
-// Wave configuration for enhanced gradient animations
-const waveConfigs = [
-  {
-    className: 'wave-1',
-    size: { width: 1200, height: 1200 },
-    position: { top: '-15%', left: '-10%' },
-    gradient: 'radial-gradient(ellipse at 30% 40%, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.15) 40%, transparent 70%)',
-    blur: 380,
-    animations: [
-      { x: '20%', y: '-5%', scale: 1.15, rotation: 15, opacity: 0.20, duration: 12.5, ease: 'sine.inOut' },
-      { x: '0%', y: '0%', scale: 1, rotation: 0, opacity: 0.12, duration: 12.5, ease: 'sine.inOut' }
-    ]
-  },
-  {
-    className: 'wave-2',
-    size: { width: 900, height: 900 },
-    position: { bottom: '-12%', right: '-8%' },
-    gradient: 'radial-gradient(ellipse at 60% 50%, rgba(139, 92, 246, 0.22) 0%, rgba(236, 72, 153, 0.12) 45%, transparent 70%)',
-    blur: 340,
-    animations: [
-      { x: '-18%', y: '12%', scale: 0.9, rotation: -20, opacity: 0.18, duration: 9, ease: 'power1.inOut' },
-      { x: '0%', y: '0%', scale: 1, rotation: 0, opacity: 0.14, duration: 9, ease: 'power1.inOut' }
-    ]
-  },
-  {
-    className: 'wave-3',
-    size: { width: 850, height: 850 },
-    position: { top: '35%', left: '-5%' },
-    gradient: 'radial-gradient(ellipse at 40% 60%, rgba(100, 160, 180, 0.20) 0%, rgba(120, 180, 200, 0.10) 50%, transparent 70%)',
-    blur: 320,
-    animations: [
-      { x: '15%', y: '-8%', scale: 1.1, rotation: 25, opacity: 0.16, duration: 7.3, ease: 'sine.inOut' },
-      { x: '8%', y: '10%', scale: 0.95, rotation: -10, opacity: 0.14, duration: 7.3, ease: 'sine.inOut' },
-      { x: '0%', y: '0%', scale: 1, rotation: 0, opacity: 0.10, duration: 7.4, ease: 'sine.inOut' }
-    ]
-  },
-  {
-    className: 'wave-4',
-    size: { width: 600, height: 600 },
-    position: { top: '15%', right: '5%' },
-    gradient: 'radial-gradient(circle at center, rgba(236, 72, 153, 0.18) 0%, rgba(139, 92, 246, 0.08) 60%, transparent 70%)',
-    blur: 280,
-    animations: [
-      { x: '-10%', y: '15%', scale: 1.2, rotation: 30, opacity: 0.15, duration: 7, ease: 'power2.inOut' },
-      { x: '0%', y: '0%', scale: 1, rotation: 0, opacity: 0.10, duration: 7, ease: 'power2.inOut' }
-    ]
-  },
-  {
-    className: 'wave-5',
-    size: { width: 700, height: 700 },
-    position: { bottom: '20%', left: '50%' },
-    gradient: 'radial-gradient(ellipse at 50% 30%, rgba(59, 130, 246, 0.16) 0%, rgba(100, 160, 180, 0.08) 55%, transparent 70%)',
-    blur: 300,
-    animations: [
-      { x: '12%', y: '-12%', scale: 0.85, rotation: -15, opacity: 0.14, duration: 8, ease: 'expo.inOut' },
-      { x: '0%', y: '0%', scale: 1, rotation: 0, opacity: 0.10, duration: 8, ease: 'expo.inOut' }
-    ]
-  }
-];
-
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const fogLayerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -79,53 +18,6 @@ export function Hero() {
 
     if (!sectionRef.current) return;
 
-    // ENHANCED WAVE GRADIENT ANIMATION
-    if (!prefersReducedMotion && fogLayerRef.current) {
-      const waves = waveConfigs.map((config) =>
-        fogLayerRef.current!.querySelector(`.${config.className}`)
-      ) as HTMLElement[];
-
-      const wavesTl = gsap.timeline({
-        repeat: -1,
-        defaults: { ease: 'sine.inOut' }
-      });
-
-      // Add GPU acceleration
-      gsap.set(waves, { force3D: true });
-
-      // Add staggered animations for each wave
-      waveConfigs.forEach((config, i) => {
-        const wave = waves[i];
-        let startTime = i * 3; // 3s stagger between wave starts
-
-        config.animations.forEach((anim) => {
-          wavesTl.to(wave, {
-            x: anim.x,
-            y: anim.y,
-            scale: anim.scale,
-            rotation: anim.rotation,
-            opacity: anim.opacity,
-            duration: anim.duration,
-            ease: anim.ease
-          }, startTime);
-
-          startTime += anim.duration;
-        });
-      });
-    }
-
-    // Accessibility: Static waves for reduced motion
-    if (prefersReducedMotion && fogLayerRef.current) {
-      const waves = waveConfigs.map((config) =>
-        fogLayerRef.current!.querySelector(`.${config.className}`)
-      ) as HTMLElement[];
-
-      // Set to mid-opacity values (static gradients)
-      const opacities = [0.12, 0.14, 0.10, 0.10, 0.10];
-      waves.forEach((wave, i) => {
-        gsap.set(wave, { opacity: opacities[i] });
-      });
-    }
 
     // HERO TEXT ENTRANCE ANIMATIONS
     const entranceTl = gsap.timeline({
@@ -175,8 +67,6 @@ export function Hero() {
 
     // Cleanup
     return () => {
-      const waveSelectors = waveConfigs.map(c => `.${c.className}`);
-      gsap.killTweensOf(waveSelectors);
       entranceTl.kill();
     };
   }, []);
@@ -198,30 +88,18 @@ export function Hero() {
       {/* LAYER 1 — BASE BLACK BACKGROUND */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "#050505" }}
+        style={{ background: "#000000" }}
         aria-hidden="true"
       />
 
-      {/* LAYER 2 — ENHANCED WAVE GRADIENTS */}
-      <div ref={fogLayerRef} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {waveConfigs.map((config, i) => (
-          <div
-            key={i}
-            className={config.className}
-            style={{
-              position: 'absolute',
-              ...config.position,
-              width: `${config.size.width}px`,
-              height: `${config.size.height}px`,
-              background: config.gradient,
-              filter: `blur(${config.blur}px)`,
-              borderRadius: '50%',
-              transform: config.position.left === '50%' ? 'translate3d(-50%, 0, 0)' : 'translate3d(0, 0, 0)',
-              willChange: 'transform, opacity, filter',
-              backfaceVisibility: 'hidden' as const,
-            }}
-          />
-        ))}
+      {/* LAYER 2 — CENTERED RADIAL GRADIENT GLOW */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(160, 220, 200, 0.15) 0%, rgba(140, 200, 180, 0.08) 25%, rgba(120, 180, 160, 0.04) 50%, transparent 70%)',
+          }}
+        />
       </div>
 
       {/* LAYER 3 — NOISE TEXTURE */}
